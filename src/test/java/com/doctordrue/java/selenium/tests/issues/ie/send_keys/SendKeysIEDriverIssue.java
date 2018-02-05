@@ -7,12 +7,19 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.doctordrue.java.selenium.core.BaseTest;
 
 public class SendKeysIEDriverIssue extends BaseTest {
+    @BeforeSuite
+    public void setConfig() {
+	System.setProperty("browser", "IE");
+	System.setProperty("ie.requireFocus", "true");
+    }
+
     @BeforeClass
     public void openUrl() {
 	driver.get("https://jsfiddle.net/zm3p20yg/");
