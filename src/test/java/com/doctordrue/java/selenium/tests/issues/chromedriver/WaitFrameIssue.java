@@ -1,7 +1,5 @@
 package com.doctordrue.java.selenium.tests.issues.chromedriver;
 
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,8 +12,6 @@ public class WaitFrameIssue extends BaseTest {
 
     @BeforeTest
     public void openJsFiddle() {
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.manage().window().maximize();
 	driver.get("http://jsfiddle.net/1ma65843/5/");
 	new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("result"));
     }

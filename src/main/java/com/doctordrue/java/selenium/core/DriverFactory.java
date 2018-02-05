@@ -34,9 +34,11 @@ public class DriverFactory {
     }
 
     public static WebDriver getInternetExplorerDriver() {
-	InternetExplorerDriverManager.getInstance().arch32().version("3.4.0").setup();
+	InternetExplorerDriverManager.getInstance().arch32().version("3.8.0").setup();
 	InternetExplorerOptions options = new InternetExplorerOptions();
-	options.requireWindowFocus();
+	if (Configuration.get().requireFocus()) {
+	    options.requireWindowFocus();
+	}
 	return new EventFiringWebDriver(new InternetExplorerDriver(options));
     }
 
