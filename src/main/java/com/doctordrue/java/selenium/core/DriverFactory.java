@@ -39,6 +39,8 @@ public class DriverFactory {
 	if (Configuration.get().requireFocus()) {
 	    options.requireWindowFocus();
 	}
+	System.setProperty("webdriver.ie.driver.loglevel", "TRACE");
+	System.setProperty("webdriver.ie.driver.logfile", "D:\\IEServerlog.log");
 	return new EventFiringWebDriver(new InternetExplorerDriver(options));
     }
 

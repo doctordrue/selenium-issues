@@ -1,59 +1,24 @@
 package com.doctordrue.java.selenium.tests.issues.ie.memory_leak;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.ie.InternetExplorerOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeGroups;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-public class AngularSPAppTest {
-    public WebDriver driver;
-    private static final String BROWSER = "ie";
+import com.doctordrue.java.selenium.core.BaseTest;
+
+public class AngularSPAppTest extends BaseTest {
     public int i = 0;
 
+    @BeforeSuite
+    public void setConfig() {
+	System.setProperty("browser", "IE");
+    }
+
     @BeforeGroups({ "empty", "id", "name", "css", "xpath" })
-    public void setupDriver() throws InterruptedException {
-	switch (BROWSER) {
-	case "chrome":
-	    System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-	    ChromeOptions options = new ChromeOptions();
-	    options.setExperimentalOption("excludeSwitches", Arrays.asList("ignore-certificate-errors"));
-	    options.addArguments("--disable-extensions");
-	    options.addArguments("disable-infobars");
-
-	    Map<String, Object> prefs = new HashMap<String, Object>();
-	    prefs.put("credentials_enable_service", false);
-	    prefs.put("profile.password_manager_enabled", false);
-	    options.setExperimentalOption("prefs", prefs);
-	    driver = new ChromeDriver(options);
-	    break;
-	case "ie":
-	    System.setProperty("webdriver.ie.driver", "src/main/resources/IEDriverServer.exe");
-	    DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
-	    ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
-		    false);
-	    InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions();
-	    internetExplorerOptions
-		    // .destructivelyEnsureCleanSession()
-		    .requireWindowFocus().enableNativeEvents()
-		    .takeFullPageScreenshot();
-
-	    driver = new InternetExplorerDriver(internetExplorerOptions);
-	    break;
-	}
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.manage().window().maximize();
+    public void openPage() throws InterruptedException {
 	driver.get("https://jsfiddle.net/dyyh2yzt/3/");
 	Thread.sleep(5000);
 	driver.switchTo().frame("result");
@@ -101,5 +66,6 @@ public class AngularSPAppTest {
     @AfterGroups({ "empty", "id", "name", "css", "xpath" })
     public void closeDriver() {
 	driver.quit();
+	setDriver();
     }
 }
