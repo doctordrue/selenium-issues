@@ -45,9 +45,11 @@ public class DriverFactory {
     }
 
     public static WebDriver getChromeDriver() {
-	ChromeDriverManager.getInstance().arch32().version("2.34").setup();
+	ChromeDriverManager.getInstance().arch32().setup();
 	ChromeOptions options = new ChromeOptions();
+
 	options.setExperimentalOption("excludeSwitches", Arrays.asList("ignore-certificate-errors"));
+	options.setExperimentalOption("excludeSwitches", Arrays.asList("enable-automation"));
 	options.addArguments("--disable-extensions");
 	options.addArguments("disable-infobars");
 
