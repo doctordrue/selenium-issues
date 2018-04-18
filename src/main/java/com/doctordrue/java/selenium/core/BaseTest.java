@@ -18,7 +18,7 @@ public abstract class BaseTest {
 	driver.manage().window().maximize();
     }
 
-    @AfterTest
+    @AfterTest(alwaysRun = true)
     public void quit() {
 	if (driver != null) {
 	    driver.quit();

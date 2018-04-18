@@ -5,10 +5,13 @@ import org.aeonbits.owner.Config.Sources;
 
 @Sources("classpath:test.properties")
 public interface TestConfig extends Config {
-    @DefaultValue("CHROME")
+    @DefaultValue("FIREFOX")
     DriverType browser();
 
     @Key("ie.requireFocus")
     @DefaultValue("true")
     boolean requireFocus();
+    
+    @Key("canary.binary")
+    String canaryBinary();
 }
