@@ -1,31 +1,31 @@
 package com.doctordrue.java.selenium.tests.issues.chromedriver;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.doctordrue.java.selenium.core.BaseTest;
-import com.doctordrue.java.selenium.core.DriverType;
 
 public class WaitFrameIssue extends BaseTest {
     
-    @BeforeClass
-    public void overrideBrowserType(){
-	driverType = DriverType.CANARY;
+    @BeforeSuite
+    public void setConfig() {
+	System.setProperty("browser", "CANARY");
     }
-
+    
     @BeforeTest
     public void openJsFiddle() {
 	driver.get("http://fiddle.jshell.net/m7j8e28n/4/show/");
 	new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(0));
     }
 
-    @Test()
+    @Test(expectedExceptions = StaleElementReferenceException.class)
     public void switchToFrameAndFindElement() throws InterruptedException {
 	driver.findElement(By.id("clickme")).click();
 	new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("target_iframe"));
