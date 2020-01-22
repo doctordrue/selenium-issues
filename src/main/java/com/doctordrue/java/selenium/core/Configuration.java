@@ -1,20 +1,21 @@
 package com.doctordrue.java.selenium.core;
 
+import com.doctordrue.java.selenium.core.ui.config.UITestConfig;
 import org.aeonbits.owner.ConfigFactory;
 
 public class Configuration {
 
     private static Configuration instance;
-    private TestConfig testConfig;
+    private UITestConfig uiTestConfig;
 
     public Configuration() {
-	testConfig = ConfigFactory.create(TestConfig.class, System.getProperties());
+	uiTestConfig = ConfigFactory.create(UITestConfig.class, System.getProperties());
     }
 
-    public static TestConfig get() {
+    public static UITestConfig getUIConfig() {
 	if (instance == null) {
 	    instance = new Configuration();
 	}
-	return instance.testConfig;
+	return instance.uiTestConfig;
     }
 }

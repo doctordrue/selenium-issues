@@ -11,9 +11,9 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.doctordrue.java.selenium.core.BaseTest;
+import com.doctordrue.java.selenium.core.BaseTestNGTest;
 
-public class SendKeysIEDriverIssue extends BaseTest {
+public class SendKeysIEDriverIssue extends BaseTestNGTest {
     @BeforeSuite
     public void setConfig() {
 	System.setProperty("browser", "IE");

@@ -10,9 +10,9 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.doctordrue.java.selenium.core.BaseTest;
+import com.doctordrue.java.selenium.core.BaseTestNGTest;
 
-public class WaitFrameIssue extends BaseTest {
+public class WaitFrameIssue extends BaseTestNGTest {
     
     @BeforeSuite
     public void setConfig() {

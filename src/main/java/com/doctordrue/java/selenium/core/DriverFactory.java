@@ -16,10 +16,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-import io.github.bonigarcia.wdm.ChromeDriverManager;
-import io.github.bonigarcia.wdm.FirefoxDriverManager;
-import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
-
 public class DriverFactory {
 
     public static WebDriver getDriver(DriverType type) {
@@ -40,7 +36,7 @@ public class DriverFactory {
     public static WebDriver getInternetExplorerDriver() {
 	WebDriverManager.iedriver().arch32().version("3.8.0").setup();
 	InternetExplorerOptions options = new InternetExplorerOptions();
-	if (Configuration.get().requireFocus()) {
+	if (Configuration.getUIConfig().requireFocus()) {
 	    options.requireWindowFocus();
 	}
 	System.setProperty("webdriver.ie.driver.loglevel", "TRACE");
@@ -68,7 +64,7 @@ public class DriverFactory {
     public static WebDriver getChromeCanaryDriver() {
 	WebDriverManager.chromedriver().useBetaVersions().arch32().setup();
 	ChromeOptions options = new ChromeOptions();
-	String path = Configuration.get().canaryBinary();
+	String path = Configuration.getUIConfig().canaryBinary();
 	if (path == null || "".equals(path)){
 	    path = System.getProperty("user.home") + "/AppData/Local/Google/Chrome SxS/Application/chrome.exe";
 	}

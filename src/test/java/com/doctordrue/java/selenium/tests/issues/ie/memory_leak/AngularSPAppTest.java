@@ -7,9 +7,9 @@ import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import com.doctordrue.java.selenium.core.BaseTest;
+import com.doctordrue.java.selenium.core.BaseTestNGTest;
 
-public class AngularSPAppTest extends BaseTest {
+public class AngularSPAppTest extends BaseTestNGTest {
     public int i = 0;
 
     @BeforeSuite
