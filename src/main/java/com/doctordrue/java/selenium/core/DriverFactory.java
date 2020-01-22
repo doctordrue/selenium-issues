@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -37,7 +38,7 @@ public class DriverFactory {
     }
 
     public static WebDriver getInternetExplorerDriver() {
-	InternetExplorerDriverManager.getInstance().arch32().version("3.8.0").setup();
+	WebDriverManager.iedriver().arch32().version("3.8.0").setup();
 	InternetExplorerOptions options = new InternetExplorerOptions();
 	if (Configuration.get().requireFocus()) {
 	    options.requireWindowFocus();
@@ -48,7 +49,7 @@ public class DriverFactory {
     }
 
     public static WebDriver getChromeDriver() {
-	ChromeDriverManager.getInstance().arch32().setup();
+	WebDriverManager.chromedriver().arch32().setup();
 	ChromeOptions options = new ChromeOptions();
 	options.setExperimentalOption("excludeSwitches", Arrays.asList("ignore-certificate-errors"));
 	options.addArguments("--disable-extensions");
@@ -65,7 +66,7 @@ public class DriverFactory {
     }
     
     public static WebDriver getChromeCanaryDriver() {
-	ChromeDriverManager.getInstance().useBetaVersions().arch32().setup();
+	WebDriverManager.chromedriver().useBetaVersions().arch32().setup();
 	ChromeOptions options = new ChromeOptions();
 	String path = Configuration.get().canaryBinary();
 	if (path == null || "".equals(path)){
@@ -88,7 +89,7 @@ public class DriverFactory {
     }
 
     public static WebDriver getFirefoxLatestDriver() {
-	FirefoxDriverManager.getInstance().useBetaVersions().setup();
+	WebDriverManager.firefoxdriver().useBetaVersions().setup();
 	FirefoxOptions geckoOptions = new FirefoxOptions().addPreference("log", "{level: error}")
 		.addPreference("dom.ipc.plugins.enabled.libflashplayer.so", true).addPreference("plugin.state.flash", 2)
 		.setLogLevel(FirefoxDriverLogLevel.FATAL)

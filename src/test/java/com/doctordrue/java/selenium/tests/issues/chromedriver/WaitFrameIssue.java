@@ -16,7 +16,7 @@ public class WaitFrameIssue extends BaseTest {
     
     @BeforeSuite
     public void setConfig() {
-	System.setProperty("browser", "CANARY");
+	System.setProperty("browser", "CHROME");
     }
     
     @BeforeTest
