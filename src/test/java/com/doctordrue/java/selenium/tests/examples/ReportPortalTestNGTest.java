@@ -1,11 +1,12 @@
 package com.doctordrue.java.selenium.tests.examples;
 
-import com.doctordrue.java.selenium.core.BaseTestNGTest;
-import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
+import com.doctordrue.java.selenium.core.BaseTestNGTest;
+import com.epam.reportportal.testng.ReportPortalTestNGListener;
 
 /**
  * @author Andrey_Barantsev
@@ -13,6 +14,7 @@ import org.testng.annotations.Test;
  **/
 @Listeners(ReportPortalTestNGListener.class)
 public class ReportPortalTestNGTest extends BaseTestNGTest {
+
    private static final Logger LOGGER = Logger.getLogger(ReportPortalTestNGTest.class);
 
    @BeforeTest
@@ -22,7 +24,7 @@ public class ReportPortalTestNGTest extends BaseTestNGTest {
    }
 
    @Test
-   public void test(){
+   public void test() {
       LOGGER.info("We are in test");
    }
 
